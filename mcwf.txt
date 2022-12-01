@@ -1,0 +1,57 @@
+sz = {{1, 0}, {0, -1}}; (* sigma z *)
+sx = {{0, 1}, {1, 0}};     (* sigma x *)
+psi0 = Normalize[{1, 1}];   (* some initial state *)
+H0 = sz; (* the Hamiltonian *)
+Ls = {0.5 sz, 0.2 sx}; (* the Lindblad operators *)
+Heff = H0 - 
+   I Sum[ConjugateTranspose[Ls[[k]]] . Ls[[k]], {k, Length[Ls]}]/
+     2; (* Effective Hamiltonian *)
+dt = 0.05 ; (* time step *)
+m = 200; (* total number of steps *)
+tf = dt*m; (* final time *)
+times = Table[k*dt, {k, m + 2}]; (* time set *)
+additive = Table[0, {k, m + 2}]; (* array for the solution *)
+mean = additive; (* array for the average trajectory *)
+count = 1; (* initial count *)
+sample = 1000; (* total amount of Monte Carlo trajectories *)
+Dynamic[ProgressIndicator[N[count/sample]]] (* Dynamic progress bar *)
+Dynamic[ListPlot[Table[{times[[k]], mean[[k]]}, {k, Length[times]}], 
+  Joined -> True,
+  Frame -> True, PlotStyle -> {Red}, 
+  PlotRange -> {{0, tf}, {-1, 1}}]] (* Dynamic plot *)
+While[count <= sample,
+  t = 0; (* initialise time *)
+  waves = {psi0}; (* initialise state *)
+  While[t <= tf,
+   (* generate a number between 0 and 1 *)
+   u = RandomVariate[UniformDistribution[{0, 1}]];
+   (*array of jump probabilties *)
+   dps = 
+    Table[dt Conjugate[
+        waves[[-1]]] . (ConjugateTranspose[Ls[[i]]] . Ls[[i]]) . 
+       waves[[-1]], {i, Length[Ls]}];
+   (* sum of the probabilities *)
+   dp = Sum[dps[[i]], {i, Length[dps]}];
+   If[dp < u,
+    (*  new state if no jump *)
+    temp = (IdentityMatrix[Length[psi0]] - 
+         I ConjugateTranspose[Heff] dt) . waves[[-1]];,
+    (* new random number *)
+    u = RandomVariate[UniformDistribution[{0, 1}]];
+    (* cumulative of the probabilities *)
+    cumulative = Table[Sum[dps[[k]], {k, i}], {i, Length[dps]}]/dp;
+    k = 1; (* search for the index associated to jump *)
+    While[u > cumulative[[k]], k++;];
+    temp = Ls[[k]] . waves[[-1]] ; (* new state if jump occurs *)
+    ];
+   AppendTo[waves, temp // Normalize]; (* 
+   Append the new state vector *)
+   t += dt; (* propagate the time *)
+   ];
+  (* evaluate some observable *)
+  additive += 
+   Table[ConjugateTranspose[waves[[k]]] . sx . waves[[k]], {k, 
+     Length[waves]}]; 
+  mean = additive/count; (* keep track of the mean *)
+  count++;
+  ];
