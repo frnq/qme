@@ -9,7 +9,8 @@ def BR_tensor(H,a_ops,secular=True,secular_cut_off = 0.01):
     evals, perm = list(zip(*_zipped))
     ekets = np.array([ekets[:, k] for k in perm])
     evals = np.array(evals)
-    a_ops_S = [[np.linalg.inv(ekets)@a@np.linalg.inv(ekets),nps] for a,nps in a_ops] # coupling ops in ekets basis
+    # coupling ops in ekets basis
+    a_ops_S = [[np.linalg.inv(ekets)@a@np.linalg.inv(ekets),nps] for a,nps in a_ops] 
     # Bohr frequencies (w_ab)
     indices = [(a,b) for a in range(dim) for b in range(dim)]
     BohrF = np.sort(np.array([evals[a]-evals[b] for a in range(dim) for b in range(dim)]))
