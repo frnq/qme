@@ -17,7 +17,7 @@ def Propagate(rho0, superop, t):
     d = len(rho0) # dimension of the system
     propagator = expm(superop * t) # propgator
     vec_rho_t = propagator @ np.reshape(rho0,(d**2,1)) # apply to initial state
-    return np.reshape(vec_rho_t,(d,d)) # return rho(t) using Qobj class
+    return np.reshape(vec_rho_t,(d,d)) # return rho(t) 
 
 # time steps
 times = np.linspace(0,10,200)
