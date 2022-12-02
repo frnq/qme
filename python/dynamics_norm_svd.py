@@ -20,10 +20,10 @@ Gamma = Omega/5
 # Build the superoperator
 H_s = np.array([[0, Omega], [Omega, 0]]);
 L = np.sqrt(Gamma)*np.array([[0, 1], [1, 0]]);
-P = Liouvillian(H_s,[L])
+superop = Liouvillian(H_s,[L])
 
 # Finding matrices containing normalised right and left eigenvectors:
-D,left,right = eig(P, left=True)
+D,left,right = eig(superop, left=True)
 
 # initial state in vectorised form
 vec_rho_0 = np.array([0,0,0,1]); 
