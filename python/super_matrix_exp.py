@@ -5,7 +5,7 @@ from scipy.linalg import expm
 H = np.array([[0,1],[1,0.5]]) # Hamiltonian
 c_ops = [np.array([[0,1],[0,0]])] # Lindblad operators
 
-superop = Liouvillian(H,c_ops) # superoperator using QuTiP
+superop = Liouvillian(H,c_ops) # superoperator
 rho0 = np.array([[1,0],[0,0]]) # initial state
 
 # propgation using exmp from scipy
