@@ -54,10 +54,10 @@ rho0 = np.array([[float(i==0 and j==i) for i in range(N)] for j in range(N)])# i
 rho_vec = (np.reshape(ekets.conjugate()@rho0@ekets.T,(1,N**2))).T
 
 dts = [1e-1*fs,1e1*fs,1e3*fs] # adaptive time-scales
-t,tf = 0,1e6*fs
-times, pos = [], []
-for dt in dts:
-    P = expm(R*dt)
+t,tf = 0,1e6*fs # initialised time, final time
+times, pos = [], [] # time, position sets
+for dt in dts: # loop over time scales
+    P = expm(R*dt) # calculate propagator
     for m in range(1000):
         times.append(t) # append time 
         pos.append( np.real(np.trace((rho_vec.conjugate()@X_vec))) ) # append position
