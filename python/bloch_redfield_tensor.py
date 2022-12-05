@@ -1,6 +1,7 @@
 import numpy as np
 
-def BR_tensor(H,a_ops,secular=True,secular_cut_off = 0.01):
+# compute the Bloch-Redfield tensor in the Hamiltonian's basis
+def BR_tensor(H, a_ops, secular = True, secular_cut_off = 0.01):
     dim = len(H) # dimension
     evals,ekets = np.linalg.eig(H) # HS's basis
     # sort basis
@@ -9,12 +10,13 @@ def BR_tensor(H,a_ops,secular=True,secular_cut_off = 0.01):
     evals, perm = list(zip(*_zipped))
     ekets = np.array([ekets[:, k] for k in perm])
     evals = np.array(evals)
-    # coupling ops in ekets basis
-    a_ops_S = [[np.linalg.inv(ekets)@a@np.linalg.inv(ekets),nps] for a,nps in a_ops] 
+    # coupling operators in H basis
+    a_ops_S = [[ekets.conjugate()@a@ekets.T,nps] for a,nps in a_ops] 
     # Bohr frequencies (w_ab)
     indices = [(a,b) for a in range(dim) for b in range(dim)]
     BohrF = np.sort(np.array([evals[a]-evals[b] for a in range(dim) for b in range(dim)]))
-    R = np.zeros((dim**2,dim**2),dtype = complex) # construct empty R
+    # construct empty R
+    R = np.zeros((dim**2,dim**2),dtype = complex) 
     for j,(a,b) in enumerate(indices): # loop over indices
         for k,(c,d) in enumerate(indices): # loop over indices
             # unitary part
@@ -46,6 +48,7 @@ def S(w,wc,eta,beta,thresh = 1e-10): # Noise Power Spectum
 
 # noise power spectrum
 NPS = lambda w: S(w,wc=1,eta=1,beta=2)
-a_ops = [[sz, NPS]] # coupling operator and associated NPS
+# coupling operator and associated NPS
+a_ops = [[sz, NPS]] 
 
 BR_tensor(HS,a_ops)
