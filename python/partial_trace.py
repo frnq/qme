@@ -22,8 +22,7 @@ for theta in thetas: # iterate over theta
     rho = np.outer(psi,psi.conjugate()) # density operator associated to psi
     rho1 = PartialTrace(rho,d1,d2,system=1) # marginal state of system 1
     purity.append(Purity(rho1)) # calculate and append purity
-fig,ax = plt.subplots(figsize = (9,3))
-ax.plot(thetas/np.pi,purity, color = 'blue', label = r'Purity of $\rho_1(\theta)$');
-ax.set_xlabel(r'$\theta$');
-ax.set_ylabel(r'$\mathcal{P}$');
-plt.legend();
+fig,ax = plt.subplots(figsize = (6,2))
+ax.plot(thetas/np.pi,purity, color = 'blue');
+ax.set_xlabel(r'$\theta/\pi$', usetex = True, fontsize = 10);
+ax.set_ylabel(r'Purity $\mathcal{P}[\rho(\theta)]$', usetex = True, fontsize = 10);
