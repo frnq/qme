@@ -27,7 +27,7 @@ pops = np.array([np.real(np.trace(Propagate(rho0, L0 + Liouvillian(v(t)*H1,[]),t
 # plot
 fig, (ax,av) = plt.subplots(2,1,figsize = (6,3),gridspec_kw={'height_ratios':[2,1]})
 fig.subplots_adjust(hspace=0.1)
-ax.plot(times, pops, 'b.-', label = 'dt = '+str(np.around(dt,2)))
+ax.plot(times, pops, 'b.-');
 ax.set_ylabel(r'$\mathrm{Tr}[\rho(t)\rho_0]$', usetex=True, fontsize = 10)
 ax.set_xticks([])
 av.set_xlabel(r'$t$', usetex = True, fontsize = 10)
