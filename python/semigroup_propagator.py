@@ -29,15 +29,13 @@ def Propagate(rho0, superop, t):
 
 # time steps
 times_1 = np.linspace(0,10,100)
-# Population of the basis state with index i = 0 using:
+# Population dynamics of the initial state
 pops_1 = np.array([np.real(np.trace(Propagate(rho0,superop,t)*rho0)) for t in times_1]) # expm
 
 # plot
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(6,2))
 ax.plot(times_0, pops_0, 'ko', label = 'w/ semigroup',fillstyle='none');
 ax.plot(times_1, pops_1, 'b-', label = 'w/ expm');
 ax.legend();
-ax.set_ylabel(r'Population $\rho_{00}(t)$')
-ax.set_xlabel(r't')
-ax.set_aspect(7);
-fig.savefig('figures/propagation_semigroup.png',transparent=True, dpi = 600,bbox_inches='tight')
+ax.set_ylabel(r'$\mathrm{Tr}[\rho(t)\rho_0]$', usetex = True, fontsize = 10);
+ax.set_xlabel(r't', usetex = True, fontsize = 10);
