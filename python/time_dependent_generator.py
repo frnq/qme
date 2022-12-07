@@ -4,7 +4,7 @@ from scipy.linalg import expm
 
 H0 = np.array([[1,0],[0,-1]]) # Hamiltonian H0
 H1 = np.array([[0,1],[1,0]]) # Hamiltonian H1
-c_ops = [] #[np.array([[0,1],[0,0]])] # Lindblad operators
+c_ops = [np.array([[0,1],[0,0]])] # Lindblad operators
 
 L0 = Liouvillian(H0,c_ops) # superoperator L0
 rho0 = np.array([[1,0],[0,0]]) # initial state
