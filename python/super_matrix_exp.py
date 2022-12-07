@@ -17,5 +17,5 @@ def Propagate(rho0, superop, t):
 
 # time steps
 times = np.linspace(0,10,100)
-# Population of the the initial state using expm
+# Population of rho0 in time with expm
 pops = np.array([ np.real(np.trace(Propagate(rho0,superop,t)@rho0)) for t in times])
