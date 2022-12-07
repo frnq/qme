@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from qutip import *
 
 H = Qobj(H) # Hamiltonian using Qobj class
@@ -8,15 +9,14 @@ rho0 = Qobj(rho0) # initial state
 
 # time steps
 times_1 = np.linspace(0,10,10)
-# Population of the basis state with index i = 0 using:
-pops_1 = mesolve(H,rho0,times_1,c_ops = c_ops, e_ops = [rho0]).expect[0] # mesolve
+# Population of rho0 in time using mesolve
+pops_1 = mesolve(H,rho0,times_1,c_ops = c_ops, e_ops = [rho0]).expect[0]
 
 # plot
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(6,2))
 ax.plot(times, pops, 'b-', label = 'w/ expm');
-ax.plot(times_1, pops_1, 'ko', label = 'w/ mesolve');
-ax.set_ylabel(r'Population $\rho_{00}(t)$')
-ax.set_xlabel(r't')
+ax.plot(times_1, pops_1, 'k.', label = 'w/ mesolve');
+ax.set_ylabel(r'$\mathrm{Tr}[\rho(t)\rho_0]$', usetex=True, fontsize = 10);
+ax.set_xlabel(r'$t$', usetex=True, fontsize = 10);
 ax.legend();
-ax.set_aspect(7);
-fig.savefig('figures/propagation.png',transparent=True, dpi = 600,bbox_inches='tight')
+fig.savefig('figures/propagation.pdf',transparent=True,bbox_inches='tight')
