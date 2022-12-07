@@ -1,21 +1,18 @@
+from scipy.integrate import solve_ivp
+
 def rho_dot(t,y):
-    return P.dot(y)
+    return superop.dot(y)
 
 # solution
 t0,tf = 0,200
-times = np.linspace(t0, tf, 50); 
+times = np.linspace(t0, tf, 20); 
 sol = solve_ivp(rho_dot, [t0,tf], vec_rho_0, method = 'RK45', t_eval = times, vectorized = True)
 
-fig, ax = plt.subplots()
-ax.plot(ts*Omega, np.real(vec_rho_t[0]), 'k.-', label = r'$\rho_{00}(t)$' );
-ax.plot(ts*Omega, np.real(vec_rho_t[3]), 'r.-', label = r'$\rho_{11}(t)$' );
-ax.set_xlabel(r'time ($t\Omega$)')
-ax.set_ylabel(r'population')
+fig, ax = plt.subplots(figsize=(6,2))
+ax.plot(ts*Omega, np.real(vec_rho_t[3]), 'b-', label = r'SVD' );
+ax.set_xlabel(r'time ($t\Omega$)', usetex= True, fontsize = 10);
+ax.set_ylabel(r'$\mathrm{Tr}[\rho(t)\rho_0]$', usetex= True, fontsize = 10);
 ax.legend();
-ax.plot(times*Omega, np.real(sol['y'][0]), 'ko', 
-        markersize = 10, alpha = 0.5, fillstyle='none', 
-        label = r'$\rho_{00}(t)$ RK45' );
-ax.plot(times*Omega, np.real(sol['y'][3]), 'ro', 
-        markersize = 10, alpha = 0.5, fillstyle='none', 
-        label = r'$\rho_{11}(t)$ RK45' );
+ax.plot(times*Omega, np.real(sol['y'][3]), 'ks', markersize = 4,alpha = 1,
+        label = r'RK45' );
 ax.legend();
