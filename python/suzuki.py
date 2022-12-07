@@ -12,7 +12,7 @@ superop_2 = Liouvillian(sy,[sm]) # superoperator 2
 rho0 = np.array([[1,0],[0,0]]) # initial state
 
 # plot
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize = (6,2))
 alpha = [0.2,0.5,1]
     
 # number of time steps m for three possible values of m = 50,100 and 1000
@@ -30,7 +30,7 @@ for km,m in enumerate([50,100,1000]):
         # propagate time and state
         t, rho = t+dt, np.reshape(P.dot(np.reshape(rho,(d**2,1))),(d,d))
     # plot    
-    ax.plot(times_0, pops_0, 'b-', label = 'w/ ST @ m = '+str(m), alpha = alpha[km]);
+    ax.plot(times_0, np.real(pops_0), 'b-', label = r'$m$ = '+str(m), alpha = alpha[km]);
 
 # Hamiltonian and Lindblad operators for exact solution
 H, c_ops = sx+sy, [sp,sm]
@@ -38,7 +38,5 @@ H, c_ops = sx+sy, [sp,sm]
 times_1 = np.linspace(times_0[0],times_0[-1],20)
 # plot
 ax.legend();
-ax.set_ylabel(r'Population $\rho_{00}(t)$')
-ax.set_xlabel(r't')
-ax.set_aspect(7);
-fig.savefig('figures/suzuki_trotter.png',transparent=True, dpi = 600,bbox_inches='tight')
+ax.set_ylabel(r'$\mathrm{Tr}[\rho(t)\rho_0]$', usetex = True, fontsize = 10)
+ax.set_xlabel(r'$t$', usetex = True, fontsize = 10);
