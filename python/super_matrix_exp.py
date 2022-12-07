@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from scipy.linalg import expm
 
 H = np.array([[0,1],[1,0.5]]) # Hamiltonian
