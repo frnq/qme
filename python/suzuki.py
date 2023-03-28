@@ -32,8 +32,6 @@ for km,m in enumerate([50,100,1000]):
     # plot    
     ax.plot(times_0, np.real(pops_0), 'b-', label = r'$m$ = '+str(m), alpha = alpha[km]);
 
-# Hamiltonian and Lindblad operators for exact solution
-H, c_ops = sx+sy, [sp,sm]
 # time steps
 times_1 = np.linspace(times_0[0],times_0[-1],20)
 # plot
