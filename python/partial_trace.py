@@ -25,4 +25,4 @@ for theta in thetas: # iterate over theta
 fig,ax = plt.subplots(figsize = (6,2))
 ax.plot(thetas/np.pi,purity, color = 'blue');
 ax.set_xlabel(r'$\theta/\pi$', usetex = True, fontsize = 10);
-ax.set_ylabel(r'Purity $\mathcal{P}[\rho(\theta)]$', usetex = True, fontsize = 10);
+ax.set_ylabel(r'Purity $\mathcal{P}[\rho_1(\theta)]$', usetex = True, fontsize = 10);
