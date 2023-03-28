@@ -18,7 +18,7 @@ alpha = [0.2,0.5,1]
 # number of time steps m for three possible values of m = 50,100 and 1000
 for km,m in enumerate([50,100,1000]):
     dt = 10/m # time-step
-    d = len(rho0) # dimension or the state
+    d = len(rho0) # dimension of the state
     P_1, P_2 = expm(superop_1 * dt), expm(superop_2 * dt) # propgators
     P = P_1.dot(P_2) # suzuki-trotter expansion for small times dt
     times_0, pops_0 = [], [] # allocate sets
