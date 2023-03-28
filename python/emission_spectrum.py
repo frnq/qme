@@ -4,7 +4,7 @@ from scipy.fftpack import fft, fftfreq
 from scipy.linalg import expm, null_space
 
 Omega, Gamma = 1,0.1 # Rabi frequency and decay rate                       
-sm = np.array([[0., 1.], [0., 0.]]) # emission operator           
+sm = np.array([[0., 0.], [1., 0.]]) # emission operator           
 sp = sm.conj().T # absorption operator
 H = np.array([[0, Omega], [Omega, 0]])/2 # Hamiltonian
 c_ops = [np.sqrt(Gamma)*sm] # collapse operators
