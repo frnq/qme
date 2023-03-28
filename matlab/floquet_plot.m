@@ -1,11 +1,3 @@
-%Simple example of using Floquet theory (ala Shirley) to numerical 
-%integrate the evolution of a two-level system and compute the absorption
-%spectrum
-%
-%script to generate a demonstration plot.
-%The floquet function can be easily vectorised, but for simplicity here it
-%is called seperately for each value of the Hamiltonian
-
 %Hamiltonian here is H = H0 + Hint*cos(omega*t)
 %where H0=0.5*Delta*sigma_z + epsilon*sigma_x
 %and Hint=0.5*Vstr*sigma_z;
@@ -67,4 +59,3 @@ plot(Delta_range,Absorp_av,'linewidth',1);
 ylabel('Absorption probability');
 xlabel('detuning (\delta)');
 legend('Vstr = 0.05', 'Vstr = 0.20', 'Vstr = 1.00','location','northwest');
-
