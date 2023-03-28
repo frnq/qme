@@ -3,9 +3,9 @@ import matplotlib.pyplot as plt
 from scipy.linalg import expm
 
 omega0,omega,gamma = 1,3,0.3 # system parameters
-H0 = np.array([[1,0],[0,-1]]) # Hamiltonian H0
-H1 = np.array([[0,1],[1,0]]) # Hamiltonian H1
-c_ops = [np.sqrt(gamma)*np.array([[0,0],[0,1]])] # Lindblad operators
+H0 = omega0*np.array([[1,0],[0,-1]])/2 # Hamiltonian H0
+H1 = omega0*np.array([[0,1],[1,0]])/2 # Hamiltonian H1
+c_ops = [np.sqrt(gamma)*np.array([[0,0],[0,1]])] # Lindblad operator
 L0 = Liouvillian(H0,c_ops) # superoperator L0
 L1 = Liouvillian(H1,[]) # superoperator L1 without time dependence
 rho0 = np.array([[1,0],[0,0]]) # initial state
