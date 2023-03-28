@@ -1,7 +1,3 @@
-%Simple example of using Floquet theory (a la Shirley) to numerical 
-%integrate the evolution of a two-level system and compute the absorption
-%spectrum
-
 function overlapprob = floquet_wave_vector_function(H0,Hint,omega,nph,measvec)
 
 %H0 time independent Hamiltonian
@@ -9,7 +5,6 @@ function overlapprob = floquet_wave_vector_function(H0,Hint,omega,nph,measvec)
 %omega drive frequency
 %nph number of photons (should be odd)
 %measvec compute overlap of state with this vector
-%
 %H = H + Hint*cos(omega*t)
 
 %Preallocate storage vectors for the absorption spectra and the
@@ -47,5 +42,3 @@ for kc=1:nph
 end
 
 return
-
-
