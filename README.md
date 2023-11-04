@@ -7,7 +7,7 @@ By Francesco Campaioli, Jared H. Cole, Harini Hapuarachchi
 
 This is a collection of scripts and examples linked to the **tutorial** on quantum master equations, available at [arXiv:2303.16449](https://arxiv.org/abs/2303.16449). Please refer to the tutorial to navigate the content. Each example is linked to a script via the external link icon as below:
 
-![Example](link.png "Externa link to the scripts")
+![Example](example.png "Externa link to the scripts")
 
 Please get in touch if you have any feedback!
 
