@@ -7,10 +7,10 @@ def Purity(rho):
 
 # Partial trace of bipartite systems
 def PartialTrace(rho,d1,d2,system=1):
-    axis1,axis2 = 0,2
+    axis1,axis2 = 1,3
     if system == 2:
-        axis1 += 1
-        axis2 += 1
+        axis1 -= 1
+        axis2 -= 1
     return np.trace(rho.reshape(d1,d2,d1,d2), axis1=axis1, axis2=axis2)
 
 d1,d2 = 2,2 # dimension of each subsystem
