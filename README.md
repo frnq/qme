@@ -9,6 +9,8 @@ This is a collection of scripts and examples linked to the **tutorial** on quant
 
 ![Example](example.png "Externa link to the scripts")
 
+An additional set of interactive examples in the form of *Jupyter Notebooks* is available in the [examples](https://github.com/frnq/qme/tree/main/examples) folder.
+
 Please get in touch if you have any feedback!
 
 ### Abstract
