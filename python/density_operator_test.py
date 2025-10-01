@@ -7,11 +7,11 @@ def is_state(rho):
                                         np.conjugate(rho[j,i]) 
                                         for i in range(len(rho)) 
                                         for j in range(i+1,len(rho))])
-                             ) # deviation from Hermitianity
+                             ) # deviation from Hermiticity
     non_pos = np.sum(np.array([(abs(val)-val)/2 
                                for val in evals])
                     ) # deviation from positivity
-    # return 1 if rho is a state, less the 1 otherwise  
+    # return 1 if rho is a state, less than 1 otherwise  
     return 1-np.linalg.norm(np.array([non_unit,non_herm,non_pos]))
     
 # a state    
