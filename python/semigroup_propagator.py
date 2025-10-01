@@ -9,8 +9,8 @@ superop = Liouvillian(H,c_ops) # superoperator
 rho0 = np.array([[1,0],[0,0]]) # initial state
     
 dt, m = 0.5, 20 # time-step and number of time steps
-d = len(rho0) # dimension or the state
-P = expm(superop * dt) # propgator
+d = len(rho0) # dimension of the state
+P = expm(superop * dt) # propagator
 times_0, pops_0 = [], [] # allocate sets
 t, rho = 0., rho0 # initialise
 # propagate

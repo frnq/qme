@@ -4,7 +4,7 @@ from scipy.linalg import null_space
 def H_tls(omega, delta):
     return np.array([[0,omega],[omega,delta]])
 
-# Lindblad operators for spontaneous relaxation and dephsing
+# Lindblad operators for spontaneous relaxation and dephasing
 def Ls_tls(g_relax, g_deph):
     return [np.sqrt(g_relax) * np.array([[0,1],[0,0]]), np.sqrt(g_deph) * np.array([[0,0],[0,1]])]
 

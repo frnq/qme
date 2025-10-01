@@ -41,7 +41,7 @@ e0, delta = 1,0.2 # spin parameters
 sz,sx = np.array([[1,0],[0,-1]]), np.array([[0,1],[1,0]])
 HS = e0/2 * sz + delta/2 * sx # spin Hamiltonian
 
-def S(w,wc,eta,beta,thresh = 1e-10): # Noise Power Spectum
+def S(w,wc,eta,beta,thresh = 1e-10): # Noise Power Spectrum
     return (2*np.pi*eta*w*np.exp(-abs(w)/wc) /
             (1-np.exp(-w*beta)+thresh)*(w>thresh or w<=-thresh) +
             2*np.pi*eta*beta**-1*(-thresh<w<thresh)) 

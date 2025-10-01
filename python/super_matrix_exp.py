@@ -7,10 +7,10 @@ c_ops = [np.array([[0,1],[0,0]])] # Lindblad operators
 superop = Liouvillian(H,c_ops) # superoperator
 rho0 = np.array([[1,0],[0,0]]) # initial state
 
-# propgation using exmp from scipy
+# propagation using expm from scipy
 def Propagate(rho0, superop, t):
     d = len(rho0) # dimension of the system
-    propagator = expm(superop * t) # propgator
+    propagator = expm(superop * t) # propagator
     vec_rho_t = propagator @ np.reshape(rho0,(d**2,1)) # apply to initial state
     return np.reshape(vec_rho_t,(d,d)) # return rho(t)
 
