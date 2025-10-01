@@ -4,7 +4,7 @@ from scipy.sparse import csr_matrix
 from scipy.linalg import toeplitz
 import math
 
-# function to obtain the Floquet propagator U(t) in temrs of Floquet blocks
+# function to obtain the Floquet propagator U(t) in terms of Floquet blocks
 # U -> U(t) = ( ..., U[2], U[1], U[0], U[-1], U[-2], ...)
 # for a harmonically driven system
 # arguments
@@ -13,7 +13,7 @@ import math
 # nphotons: number of photons driving the interaction
 # P0:       time-independent part of the Liouville superoperator
 # Pint:     superoperator of the interaction
-# average:  if average is Ture, average over all possible phases of driving field.
+# average:  if average is True, average over all possible phases of driving field.
 
 def floquet_decoherence(times, omega, nphotons, P0, Pint, average = False):
 
@@ -29,8 +29,8 @@ def floquet_decoherence(times, omega, nphotons, P0, Pint, average = False):
     # initial generator
     U0 = np.eye(len(P0)) 
     
-    # ---> Build floquet matrix, compute matrix exponential, resum propagators and return
-    # Build floquet matrix
+    # ---> Build Floquet matrix, compute matrix exponential, resum propagators and return
+    # Build Floquet matrix
     maxn = math.floor(nphotons / 2);
     photon_vec = np.arange(-maxn, maxn+1, 1)
     photon_diag = sp.sparse.eye(nphotons) 
